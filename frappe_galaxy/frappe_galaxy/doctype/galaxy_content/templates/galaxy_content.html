@@ -1,0 +1,32 @@
+{% extends "templates/web.html" %}
+
+{% block title %}{{ doc.meta_title or doc.title }}{% endblock %}
+
+{% block head_include %}
+  {% if doc.meta_description %}
+    <meta name="description" content="{{ doc.meta_description }}">
+  {% endif %}
+{% endblock %}
+
+{% block page_content %}
+  <h1>{{ doc.title }}</h1>
+
+  {% if doc.summary %}
+    <p style="opacity:.8">{{ doc.summary }}</p>
+  {% endif %}
+
+  <hr>
+
+  <div>
+    {{ doc.body_md | markdown }}
+  </div>
+
+{% endblock %}
+
+<!-- {% extends "templates/web.html" %}
+
+{% block page_content %}
+<h1>{{ title }}</h1>
+{% endblock %} -->
+
+<!-- this is a sample default web page template -->

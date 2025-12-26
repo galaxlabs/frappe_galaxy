@@ -11,15 +11,15 @@ app_license = "mit"
 # required_apps = []
 
 # Each item in the list will be shown as an app in the apps page
-# add_to_apps_screen = [
-# 	{
-# 		"name": "frappe_galaxy",
-# 		"logo": "/assets/frappe_galaxy/logo.png",
-# 		"title": "Frappe Galaxy",
-# 		"route": "/frappe_galaxy",
-# 		"has_permission": "frappe_galaxy.api.permission.has_app_permission"
-# 	}
-# ]
+add_to_apps_screen = [
+	{
+		"name": "frappe_galaxy",
+		"logo": "/assets/frappe_galaxy/logo.png",
+		"title": "Frappe Galaxy",
+		"route": "/frappe_galaxy",
+		"has_permission": "frappe_galaxy.api.permission.has_app_permission"
+	}
+]
 
 # Includes in <head>
 # ------------------

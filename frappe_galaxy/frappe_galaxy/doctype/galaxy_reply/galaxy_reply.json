@@ -1,0 +1,90 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:{thread}{DD}-{MM}-{YYYY}",
+ "creation": "2025-12-25 20:00:33.582947",
+ "description": "Replies under a Galaxy Thread. Supports accepted solution",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "thread",
+  "reply_md",
+  "created_by",
+  "is_solution",
+  "solution_on",
+  "solution_by"
+ ],
+ "fields": [
+  {
+   "fieldname": "thread",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Thread",
+   "options": "Galaxy Thread",
+   "reqd": 1
+  },
+  {
+   "fieldname": "reply_md",
+   "fieldtype": "Text Editor",
+   "label": "Reply (Markdown)",
+   "reqd": 1
+  },
+  {
+   "fieldname": "created_by",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Created By",
+   "options": "User",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "is_solution",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "label": "Is Solution",
+   "read_only": 1
+  },
+  {
+   "fieldname": "solution_on",
+   "fieldtype": "Datetime",
+   "label": "Solution On",
+   "read_only": 1
+  },
+  {
+   "fieldname": "solution_by",
+   "fieldtype": "Link",
+   "label": "Solution By",
+   "options": "User",
+   "read_only": 1
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-12-25 20:09:50.461618",
+ "modified_by": "Administrator",
+ "module": "Frappe Galaxy",
+ "name": "Galaxy Reply",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
