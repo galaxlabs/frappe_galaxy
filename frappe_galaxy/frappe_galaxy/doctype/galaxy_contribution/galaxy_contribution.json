@@ -1,0 +1,131 @@
+{
+ "actions": [
+  {
+   "action": "frappe_galaxy.api.approve_contribution",
+   "action_type": "Server Action",
+   "label": "Approve"
+  },
+  {
+   "action": "frappe_galaxy.api.reject_contribution",
+   "action_type": "Server Action",
+   "label": "Reject"
+  }
+ ],
+ "allow_rename": 1,
+ "autoname": "format:{content}-{contribution_type}",
+ "creation": "2025-12-26 15:08:45.337156",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "content",
+  "status",
+  "reviewed_by",
+  "column_break_yglh",
+  "contribution_type",
+  "contributor",
+  "reviewed_on",
+  "section_break_rxra",
+  "proposed_md",
+  "comment_text",
+  "reviewer_notes"
+ ],
+ "fields": [
+  {
+   "fieldname": "content",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Content",
+   "options": "Galaxy Content",
+   "reqd": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "contribution_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Contribution Type",
+   "options": "\nSuggest Edit\nComment\nFixTypo\nAdd Example",
+   "reqd": 1
+  },
+  {
+   "fieldname": "proposed_md",
+   "fieldtype": "Text Editor",
+   "label": "Proposed Md"
+  },
+  {
+   "default": "Pending",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "Pending\nApproved\nRejected"
+  },
+  {
+   "fieldname": "reviewed_by",
+   "fieldtype": "Link",
+   "label": "Reviewed By",
+   "options": "User",
+   "read_only": 1
+  },
+  {
+   "default": "__user",
+   "fieldname": "contributor",
+   "fieldtype": "Link",
+   "label": "Contributor",
+   "options": "User",
+   "read_only": 1
+  },
+  {
+   "fieldname": "reviewed_on",
+   "fieldtype": "Datetime",
+   "label": "Reviewed On",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_yglh",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_rxra",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "reviewer_notes",
+   "fieldtype": "Small Text",
+   "label": "Reviewer Notes"
+  },
+  {
+   "depends_on": "eval:doc.contribution_type == \"Comment\"",
+   "fieldname": "comment_text",
+   "fieldtype": "Small Text",
+   "label": "Comment Text"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-12-26 22:40:04.895525",
+ "modified_by": "Administrator",
+ "module": "Frappe Galaxy",
+ "name": "Galaxy Contribution",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

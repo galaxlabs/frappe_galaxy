@@ -8,23 +8,26 @@
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
+  "published",
   "title",
-  "slug",
   "content_type",
-  "status",
-  "is_public",
-  "summary",
-  "body_md",
   "category",
-  "tags",
-  "hero_image",
   "author",
   "published_on",
+  "column_break_ibai",
+  "is_public",
+  "slug",
+  "status",
+  "tags",
+  "section_break_knob",
+  "summary",
+  "body_md",
+  "hero_image",
   "section_seo",
   "meta_title",
   "meta_description",
   "route",
-  "published"
+  "canonical_url"
  ],
  "fields": [
   {
@@ -48,8 +51,9 @@
    "fieldtype": "Select",
    "in_list_view": 1,
    "label": "Content Type",
-   "options": "Doc\nTutorial\nWiki\nNote\nProfile",
-   "reqd": 1
+   "options": "Doc\nTutorial\nWiki\nNote\nProfile\nArticle\nHowTo\nFAQ\nPortfolio\nJobs\nProjects\nPost",
+   "reqd": 1,
+   "sort_options": 1
   },
   {
    "default": "Draft",
@@ -57,8 +61,9 @@
    "fieldtype": "Select",
    "in_list_view": 1,
    "label": "Status",
-   "options": "Draft\nIn Review\nPublished\nArchived",
-   "reqd": 1
+   "options": "Draft\nIn Review\nArchived\nPublished",
+   "reqd": 1,
+   "sort_options": 1
   },
   {
    "default": "0",
@@ -95,6 +100,7 @@
    "label": "Hero Image"
   },
   {
+   "default": "__user",
    "fieldname": "author",
    "fieldtype": "Link",
    "label": "Author",
@@ -130,6 +136,19 @@
    "fieldname": "published",
    "fieldtype": "Check",
    "label": "Published"
+  },
+  {
+   "fieldname": "canonical_url",
+   "fieldtype": "Data",
+   "label": "Canonical Url"
+  },
+  {
+   "fieldname": "section_break_knob",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_ibai",
+   "fieldtype": "Column Break"
   }
  ],
  "grid_page_length": 50,
@@ -137,7 +156,7 @@
  "index_web_pages_for_search": 1,
  "is_published_field": "published",
  "links": [],
- "modified": "2025-12-25 23:32:11.972205",
+ "modified": "2025-12-26 22:38:40.739407",
  "modified_by": "Administrator",
  "module": "Frappe Galaxy",
  "name": "Galaxy Content",
