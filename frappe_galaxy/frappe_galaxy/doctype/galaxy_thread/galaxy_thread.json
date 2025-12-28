@@ -26,7 +26,7 @@
    "fieldname": "topic",
    "fieldtype": "Link",
    "label": "Topic (Optional)",
-   "options": "Galaxy Content"
+   "options": "Content"
   },
   {
    "fieldname": "question_md",
@@ -62,7 +62,7 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-12-25 20:13:03.614709",
+ "modified": "2025-12-27 18:11:07.982191",
  "modified_by": "Administrator",
  "module": "Frappe Galaxy",
  "name": "Galaxy Thread",

@@ -1,0 +1,60 @@
+{% extends "templates/web.html" %}
+
+{% block page_content %}
+<div class="container">
+  <div class="row">
+
+    <!-- Sidebar -->
+    <div class="col-md-3">
+      <h5 style="margin-top:0;">{{ type_title }}</h5>
+
+      <div style="margin-bottom: 10px;">
+        <a href="/{{ base_path }}">All {{ type_title }}</a>
+      </div>
+
+      <div style="border-top:1px solid #eee; padding-top:10px;">
+        <div style="font-size:12px; opacity:.7; margin-bottom:8px;">Categories</div>
+        <ul class="list-unstyled">
+          {% for c in categories %}
+            <li style="margin: 6px 0;">
+              <a href="/{{ base_path }}/{{ c.slug }}">{{ c.title }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+
+    <!-- Main -->
+    <div class="col-md-9">
+      <h2 style="margin-top:0;">
+        {{ type_title }}
+        {% if active_category_title %}
+          <small style="opacity:.7;">/ {{ active_category_title }}</small>
+        {% endif %}
+      </h2>
+
+      {% if not items %}
+        <p>No posts found.</p>
+      {% endif %}
+
+      {% for it in items %}
+        <div style="padding: 14px 0; border-bottom: 1px solid #eee;">
+          <h4 style="margin:0 0 6px;">
+            <a href="/{{ it.route }}">{{ it.title }}</a>
+          </h4>
+
+          {% if it.summary %}
+            <div style="opacity:.75;">{{ it.summary }}</div>
+          {% endif %}
+
+          <div style="font-size: 12px; opacity:.6; margin-top: 6px;">
+            {% if it.published_on %}{{ frappe.format_date(it.published_on) }}{% endif %}
+            {% if it.tags %} • {{ it.tags }}{% endif %}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+
+  </div>
+</div>
+{% endblock %}

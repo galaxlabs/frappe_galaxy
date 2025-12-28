@@ -1,0 +1,16 @@
+<div style="padding:12px; border:1px solid #eee; border-radius:12px;">
+  <div style="font-weight:600; margin-bottom:8px;">Browse</div>
+
+  <div style="margin-bottom:10px;">
+    <a href="/docs">Docs</a> • <a href="/tutorials">Tutorials</a> • <a href="/wiki">Wiki</a>
+  </div>
+
+  <div style="font-weight:600; margin:10px 0 6px;">Categories</div>
+  <ul style="list-style:none; padding-left:0; margin:0;">
+    {% for c in sidebar_categories %}
+      <li style="margin:6px 0;">
+        <a href="/{{ base_path }}/category/{{ c.slug }}">{{ c.title }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+</div>

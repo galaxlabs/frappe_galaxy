@@ -6,8 +6,9 @@
   {% for it in items %}
     <li style="margin: 12px 0;">
       <a href="/{{ it.route }}">{{ it.title }}</a>
-      <!-- <a href="/g/{{ it.slug }}">{{ it.title }}</a> -->
-      <div style="opacity:.75">{{ it.content_type }}{% if it.summary %} — {{ it.summary }}{% endif %}</div>
+      <div style="opacity:.75">
+        {{ it.content_type }}{% if it.summary %} — {{ it.summary }}{% endif %}
+      </div>
     </li>
   {% endfor %}
 </ul>

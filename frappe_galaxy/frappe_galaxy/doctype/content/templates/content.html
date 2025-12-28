@@ -1,0 +1,61 @@
+{% extends "templates/web.html" %}
+
+{% block page_content %}
+
+<div class="container" style="max-width: 980px;">
+
+  <!-- Breadcrumb -->
+  <div style="font-size: 13px; opacity: .75; margin: 10px 0 18px;">
+    <a href="/{{ doc.route.split('/')[0] }}">{{ doc.content_type }}</a>
+    {% if doc.category %}
+      <span> / </span>
+      <a href="/{{ doc.route.split('/')[0] }}/{{ frappe.db.get_value('Galaxy Category', doc.category, 'slug') }}">
+        {{ frappe.db.get_value('Galaxy Category', doc.category, 'title') }}
+      </a>
+    {% endif %}
+  </div>
+
+  <!-- Title + meta -->
+  <h1 style="margin-bottom: 6px;">{{ doc.title }}</h1>
+
+  <div style="opacity:.75; font-size: 13px; margin-bottom: 18px;">
+    {% if doc.author %}By {{ frappe.db.get_value("User", doc.author, "full_name") or doc.author }}{% endif %}
+    {% if doc.published_on %} • {{ frappe.format_date(doc.published_on) }}{% endif %}
+    {% if doc.tags %} • Tags: {{ doc.tags }}{% endif %}
+  </div>
+
+  {% if doc.summary %}
+  <div style="padding: 12px 14px; border: 1px solid #eee; border-radius: 8px; margin-bottom: 20px;">
+    <strong>Summary</strong>
+    <div style="margin-top: 6px; opacity: .9;">{{ doc.summary }}</div>
+  </div>
+  {% endif %}
+
+  {% if doc.hero_image %}
+    <img src="{{ doc.hero_image }}" style="width: 100%; border-radius: 12px; margin: 12px 0 22px;" />
+  {% endif %}
+
+  <!-- Body -->
+  <div class="content-body" style="line-height: 1.75; font-size: 16px;">
+    {{ frappe.utils.md_to_html(doc.body_md or "") }}
+  </div>
+
+  <hr style="margin: 28px 0;" />
+
+  <!-- Related -->
+  {% if related_items and related_items|length %}
+    <h4 style="margin-bottom: 12px;">More in this category</h4>
+    <ul>
+      {% for it in related_items %}
+        <li style="margin: 10px 0;">
+          <a href="/{{ it.route }}">{{ it.title }}</a>
+          {% if it.summary %}
+            <div style="opacity:.75; font-size: 13px;">{{ it.summary }}</div>
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+
+</div>
+{% endblock %}

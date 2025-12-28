@@ -35,7 +35,7 @@
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Content",
-   "options": "Galaxy Content",
+   "options": "Content",
    "reqd": 1,
    "search_index": 1
   },
@@ -103,7 +103,7 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-12-26 22:40:04.895525",
+ "modified": "2025-12-27 18:11:08.126139",
  "modified_by": "Administrator",
  "module": "Frappe Galaxy",
  "name": "Galaxy Contribution",

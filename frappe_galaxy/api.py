@@ -205,3 +205,47 @@ def create_contribution(content, contribution_type="Comment", comment_text=None,
     })
     d.insert(ignore_permissions=True)
     return {"ok": True, "name": d.name, "status": d.status, "created_on": now()}
+
+
+@frappe.whitelist()
+def submit_content(title, content_type, body_md=None, summary=None, category=None):
+    if frappe.session.user == "Guest":
+        frappe.throw("Login required", frappe.PermissionError)
+
+    # only allow a known set
+    allowed = {"Doc","Tutorial","Wiki","Note","Profile","Article","HowTo","FAQ","Portfolio","Jobs","Projects","Post"}
+    if content_type not in allowed:
+        frappe.throw("Invalid content_type")
+
+    doc = frappe.get_doc({
+        "doctype": "Content",
+        "title": title,
+        "content_type": content_type,
+        "summary": summary,
+        "body_md": body_md,
+        "category": category or None,
+        "status": "In Review",     # force moderation
+        "is_public": 0,            # force not public
+        "published": 0,
+        "author": frappe.session.user,
+    })
+
+    doc.insert(ignore_permissions=False)
+    return {"ok": True, "name": doc.name}
+
+@frappe.whitelist()
+def submit_contribution(content, contribution_type, proposed_md=None, comment_text=None):
+    if frappe.session.user == "Guest":
+        frappe.throw("Login required", frappe.PermissionError)
+
+    doc = frappe.get_doc({
+        "doctype": "Galaxy Contribution",
+        "content": content,
+        "contribution_type": contribution_type,
+        "proposed_md": proposed_md,
+        "comment_text": comment_text,
+        "status": "Pending",
+        "contributor": frappe.session.user
+    })
+    doc.insert()
+    return {"ok": True}

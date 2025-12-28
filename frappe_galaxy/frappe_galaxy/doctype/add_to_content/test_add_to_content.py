@@ -5,5 +5,5 @@
 from frappe.tests.utils import FrappeTestCase
 
 
-class TestGalaxyContent(FrappeTestCase):
+class TestAddtoContent(FrappeTestCase):
 	pass

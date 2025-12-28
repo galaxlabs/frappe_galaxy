@@ -1,0 +1,53 @@
+{% extends "templates/web.html" %}
+
+{% block page_content %}
+<div class="container">
+  <div class="row">
+
+    <div class="col-md-3">
+      <h5>Docs</h5>
+      <div style="margin-bottom: 10px;">
+        <a href="/docs">All Docs</a>
+      </div>
+
+      <ul class="list-unstyled">
+        {% for c in categories %}
+          <li style="margin: 6px 0;">
+            <a href="/docs/{{ c.slug }}">{{ c.title }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <div class="col-md-9">
+      <h2 style="margin-top: 0;">
+        Docs
+        {% if active_category_title %}
+          <small style="opacity:.7;">/ {{ active_category_title }}</small>
+        {% endif %}
+      </h2>
+
+      {% if not items %}
+        <p>No posts found.</p>
+      {% endif %}
+
+      {% for it in items %}
+        <div style="padding: 14px 0; border-bottom: 1px solid #eee;">
+          <h4 style="margin: 0 0 6px;">
+            <a href="/{{ it.route }}">{{ it.title }}</a>
+          </h4>
+          {% if it.summary %}
+            <div style="opacity:.75;">{{ it.summary }}</div>
+          {% endif %}
+          {% if it.published_on %}
+            <div style="font-size: 12px; opacity: .6; margin-top: 6px;">
+              {{ frappe.format_date(it.published_on) }}
+            </div>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+
+  </div>
+</div>
+{% endblock %}

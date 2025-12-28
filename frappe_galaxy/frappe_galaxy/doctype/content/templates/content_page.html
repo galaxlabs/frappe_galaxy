@@ -1,0 +1,57 @@
+{% extends "templates/web.html" %}
+{% block page_content %}
+
+<div class="container" style="display:flex; gap:24px; align-items:flex-start;">
+
+  <!-- Sidebar -->
+  <aside style="width:280px; position:sticky; top:16px;">
+    {% include "frappe_galaxy/templates/content/content_sidebar.html" %}
+  </aside>
+
+  <!-- Main -->
+  <main style="flex:1; min-width:0;">
+    <div style="margin-bottom:14px;">
+      <div style="opacity:.7; font-size:13px;">
+        {{ doc.content_type }}
+        {% if doc.category %} • <a href="/{{ doc.content_type|lower }}s/category/{{ doc.category }}">{{ doc.category }}</a>{% endif %}
+        {% if doc.published_on %} • {{ frappe.utils.format_datetime(doc.published_on, "medium") }}{% endif %}
+      </div>
+
+      <h1 style="margin:6px 0 6px 0;">{{ doc.title }}</h1>
+
+      {% if doc.summary %}
+        <p style="font-size:16px; opacity:.85;">{{ doc.summary }}</p>
+      {% endif %}
+
+      {% if doc.hero_image %}
+        <img src="{{ doc.hero_image }}" style="width:100%; border-radius:12px; margin:12px 0;" />
+      {% endif %}
+    </div>
+
+    <article class="prose" style="line-height:1.7;">
+      {{ frappe.utils.md_to_html(doc.body_md or "") }}
+    </article>
+
+    {% include "frappe_galaxy/templates/content/content_footer_actions.html" %}
+
+    {% if related_items %}
+      <hr>
+      <h3>Related</h3>
+      <ul>
+        {% for it in related_items %}
+          <li><a href="/{{ it.route }}">{{ it.title }}</a></li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+
+    {% if doc.enable_qa %}
+      <hr>
+      <h3>Q&amp;A</h3>
+      <div id="qa-root"></div>
+      <script src="/assets/frappe_galaxy/js/qa.js"></script>
+    {% endif %}
+
+  </main>
+</div>
+
+{% endblock %}

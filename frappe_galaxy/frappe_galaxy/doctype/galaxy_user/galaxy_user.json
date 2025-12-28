@@ -1,47 +1,26 @@
 {
  "actions": [],
  "allow_rename": 1,
- "creation": "2025-12-25 21:40:53.172071",
+ "creation": "2025-12-28 02:08:20.364361",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "content",
-  "user",
-  "is_solution",
-  "unique_key"
+  "first_name"
  ],
  "fields": [
   {
-   "fieldname": "content",
-   "fieldtype": "Link",
-   "label": "Content",
-   "options": "Content"
-  },
-  {
-   "fieldname": "user",
-   "fieldtype": "Link",
-   "label": "User",
-   "options": "User"
-  },
-  {
-   "default": "0",
-   "fieldname": "is_solution",
-   "fieldtype": "Check",
-   "label": "IS Salution"
-  },
-  {
-   "fieldname": "unique_key",
+   "fieldname": "first_name",
    "fieldtype": "Data",
-   "label": "Unique Key"
+   "label": "First Name"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-12-27 18:11:07.658007",
+ "modified": "2025-12-28 02:18:37.087783",
  "modified_by": "Administrator",
  "module": "Frappe Galaxy",
- "name": "Galaxy Solution Vote",
+ "name": "Galaxy User",
  "owner": "Administrator",
  "permissions": [
   {
