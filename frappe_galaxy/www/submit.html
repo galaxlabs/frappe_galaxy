@@ -1,64 +1,10 @@
-{% extends "templates/web.html" %}
-{% block page_content %}
-<h2>Submit Content</h2>
-
-<form id="submit-form">
-  <div class="form-group">
-    <label>Title</label>
-    <input class="form-control" name="title" required>
-  </div>
-
-  <div class="form-group">
-    <label>Content Type</label>
-    <select class="form-control" name="content_type" required>
-      {% for t in content_types %}
-        <option value="{{ t }}">{{ t }}</option>
-      {% endfor %}
-    </select>
-  </div>
-
-  <div class="form-group">
-    <label>Category</label>
-    <select class="form-control" name="category">
-      <option value="">-- None --</option>
-      {% for c in categories %}
-        <option value="{{ c.name }}">{{ c.title }}</option>
-      {% endfor %}
-    </select>
-  </div>
-
-  <div class="form-group">
-    <label>Summary</label>
-    <textarea class="form-control" name="summary"></textarea>
-  </div>
-
-  <div class="form-group">
-    <label>Body (Markdown)</label>
-    <textarea class="form-control" name="body_md" rows="10"></textarea>
-  </div>
-
-  <button class="btn btn-primary" type="submit">Submit for Review</button>
-</form>
-
-<script>
-document.getElementById("submit-form").addEventListener("submit", async (e) => {
-  e.preventDefault();
-  const fd = new FormData(e.target);
-  const payload = Object.fromEntries(fd.entries());
-
-  const r = await fetch("/api/method/frappe_galaxy.api.submit_content", {
-    method: "POST",
-    headers: {"Content-Type": "application/json"},
-    body: JSON.stringify(payload)
-  });
-
-  const data = await r.json();
-  if (data.message && data.message.ok) {
-    alert("Submitted! Awaiting review.");
-    e.target.reset();
-  } else {
-    alert((data._server_messages || ["Error"]).join("\n"));
-  }
-});
-</script>
-{% endblock %}
+{% if frappe.session.user == "Guest" %}
+<div class="form-group">
+  <label>Your Name</label>
+  <input class="form-control" name="guest_name" required>
+</div>
+<div class="form-group">
+  <label>Your Email</label>
+  <input class="form-control" name="guest_email" type="email" required>
+</div>
+{% endif %}

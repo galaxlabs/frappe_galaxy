@@ -30,9 +30,11 @@
   "route",
   "canonical_url",
   "tags_normalized",
-  "uid",
+  "hash_id",
   "content_key",
-  "search_text"
+  "search_text",
+  "sort_order",
+  "featured"
  ],
  "fields": [
   {
@@ -69,7 +71,7 @@
    "sort_options": 1
   },
   {
-   "default": "0",
+   "default": "1",
    "fieldname": "is_public",
    "fieldtype": "Check",
    "in_list_view": 1,
@@ -89,7 +91,7 @@
    "fieldname": "category",
    "fieldtype": "Link",
    "label": "Category",
-   "options": "Galaxy Category"
+   "options": "Content Category"
   },
   {
    "description": "Comma separated tags (MVP).",
@@ -170,25 +172,38 @@
    "read_only": 1
   },
   {
-   "fieldname": "uid",
-   "fieldtype": "Data",
-   "hidden": 1,
-   "label": "UID",
-   "read_only": 1,
-   "unique": 1
-  },
-  {
    "fieldname": "content_key",
    "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Content Key",
    "read_only": 1,
    "unique": 1
   },
   {
    "fieldname": "search_text",
-   "fieldtype": "Text",
+   "fieldtype": "Long Text",
    "hidden": 1,
    "label": "Search Text",
    "read_only": 1
+  },
+  {
+   "fieldname": "hash_id",
+   "fieldtype": "Data",
+   "label": "Hash Id",
+   "no_copy": 1,
+   "read_only": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "sort_order",
+   "fieldtype": "Int",
+   "label": "Sort Order"
+  },
+  {
+   "default": "0",
+   "fieldname": "featured",
+   "fieldtype": "Check",
+   "label": "Featured"
   }
  ],
  "grid_page_length": 50,
@@ -196,7 +211,7 @@
  "index_web_pages_for_search": 1,
  "is_published_field": "published",
  "links": [],
- "modified": "2025-12-28 02:48:12.953886",
+ "modified": "2025-12-28 20:32:29.517381",
  "modified_by": "Administrator",
  "module": "Frappe Galaxy",
  "name": "Content",

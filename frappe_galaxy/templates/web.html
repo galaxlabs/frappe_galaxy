@@ -1,0 +1,42 @@
+{% extends "frappe/templates/web.html" %}
+
+{% block navbar %}
+<nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom sticky-top">
+  <div class="container">
+    <a class="navbar-brand font-weight-bold" href="/">Galaxy Labs Online</a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#glxNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="glxNav">
+      <ul class="navbar-nav mr-auto">
+        {% for it in nav_items or [] %}
+          <li class="nav-item">
+            <a class="nav-link" href="/{{ it.slug }}">{{ it.title }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link btn btn-sm btn-primary text-white px-3" href="/submit">Submit</a>
+        </li>
+        {% if frappe.session.user == "Guest" %}
+          <li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
+        {% else %}
+          <li class="nav-item"><a class="nav-link" href="/me">{{ frappe.session.user }}</a></li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+</nav>
+{% endblock %}
+
+{% block footer %}
+<footer class="border-top mt-5 py-4">
+  <div class="container text-muted small">
+    © {{ frappe.utils.now_datetime().year }} Galaxy Labs Online
+  </div>
+</footer>
+{% endblock %}

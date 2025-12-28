@@ -9,8 +9,8 @@
     <a href="/{{ doc.route.split('/')[0] }}">{{ doc.content_type }}</a>
     {% if doc.category %}
       <span> / </span>
-      <a href="/{{ doc.route.split('/')[0] }}/{{ frappe.db.get_value('Galaxy Category', doc.category, 'slug') }}">
-        {{ frappe.db.get_value('Galaxy Category', doc.category, 'title') }}
+      <a href="/{{ doc.route.split('/')[0] }}/{{ frappe.db.get_value('Category', doc.category, 'slug') }}">
+        {{ frappe.db.get_value('Category', doc.category, 'title') }}
       </a>
     {% endif %}
   </div>

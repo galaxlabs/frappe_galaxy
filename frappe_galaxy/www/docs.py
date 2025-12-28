@@ -12,7 +12,7 @@ def get_context(context):
 
     if category_slug:
         category_name, category_title = frappe.db.get_value(
-            "Galaxy Category",
+            "Category",
             {"slug": category_slug},
             ["name", "title"]
         ) or (None, None)
@@ -32,7 +32,7 @@ def get_context(context):
     context.active_category_title = category_title
 
     context.categories = frappe.get_all(
-        "Galaxy Category",
+        "Category",
         fields=["title", "slug", "lft"],
         order_by="lft asc",
         limit_page_length=500
